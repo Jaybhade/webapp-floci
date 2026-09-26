@@ -25,7 +25,7 @@ Last updated: 2026-09-27. This records verified milestones and decisions; it is 
 - Frontend still displays the starter page. There is no frontend-to-backend flow, frontend Docker image, or Floci frontend deployment yet.
 - Backend has migrated to Express and TypeScript. Its compiled app and migrated standalone Docker container passed route checks.
 - Backend has a separate application Compose configuration; Floci remains independently managed.
-- AWS CLI installation is reported complete and the executable is present. The Floci CLI profile and API connectivity have not been verified.
+- AWS CLI 2.37.4 is verified. EC2 image and instance listings succeeded against Floci in `us-east-1` using temporary dummy credentials; no instances were returned in that account/region. The dedicated saved `floci` profile still needs configuring.
 
 ## Shared measured traffic baseline
 
@@ -35,7 +35,7 @@ These are backend health-endpoint results only. Frontend serving capacity, end-t
 
 ## Next milestone
 
-1. Complete AWS CLI connectivity to Floci and provision the first application instance.
+1. Configure the saved `floci` CLI profile, verify it, and provision the first application instance. Read-only EC2 API connectivity is already verified using temporary credentials.
 2. Deploy the existing backend, then deploy the existing Next.js application.
 3. Connect the deployed frontend to `/api/info`, verify the browser flow, and document the update and rollback procedure.
 4. Continue building and deploying features incrementally. Add CI/CD once manual deployment is repeatable.
