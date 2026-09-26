@@ -25,7 +25,8 @@ Last updated: 2026-09-27. This records verified milestones and decisions; it is 
 - Frontend still displays the starter page. There is no frontend-to-backend flow, frontend Docker image, or Floci frontend deployment yet.
 - Backend has migrated to Express and TypeScript. Its compiled app and migrated standalone Docker container passed route checks.
 - Backend has a separate application Compose configuration; Floci remains independently managed.
-- AWS CLI 2.37.4 is verified. EC2 image and instance listings succeeded against Floci in `us-east-1` using temporary dummy credentials; no instances were returned in that account/region. The dedicated saved `floci` profile still needs configuring.
+- AWS CLI 2.37.4 is verified. Initial EC2 image and instance listings succeeded against Floci in `us-east-1` using temporary dummy credentials; no instances were returned in that account/region.
+- The saved `floci` profile is verified. Application instance `i-9736fd513c201be3e` is now running Ubuntu 24.04 ARM64 with type `t4g.micro`. Its SSH endpoint at `localhost:2200` responds with an SSH banner, and sshd configuration validation passed. User SSH authentication and application deployment are pending.
 
 ## Shared measured traffic baseline
 
@@ -35,7 +36,7 @@ These are backend health-endpoint results only. Frontend serving capacity, end-t
 
 ## Next milestone
 
-1. Configure the saved `floci` CLI profile, verify it, and provision the first application instance. Read-only EC2 API connectivity is already verified using temporary credentials.
+1. Connect to the provisioned application instance over SSH at `localhost:2200` and verify the session.
 2. Deploy the existing backend, then deploy the existing Next.js application.
 3. Connect the deployed frontend to `/api/info`, verify the browser flow, and document the update and rollback procedure.
 4. Continue building and deploying features incrementally. Add CI/CD once manual deployment is repeatable.
