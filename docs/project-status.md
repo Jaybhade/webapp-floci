@@ -27,6 +27,7 @@ Last updated: 2026-09-27. This records verified milestones and decisions; it is 
 - Backend has a separate application Compose configuration; Floci remains independently managed.
 - AWS CLI 2.37.4 is verified. Initial EC2 image and instance listings succeeded against Floci in `us-east-1` using temporary dummy credentials; no instances were returned in that account/region.
 - The saved `floci` profile is verified. Application instance `i-9736fd513c201be3e` is now running Ubuntu 24.04 ARM64 with type `t4g.micro`. Its SSH endpoint at `localhost:2200` responds with an SSH banner, and sshd configuration validation passed. User SSH authentication and application deployment are pending.
+- SSH access and the guest runtime (Node 25.9.0, npm 11.12.1, including `libatomic1`) are now verified. Backend commit `e13ce3e0737d37942a138ae0cc1bb80db8b6f5bb` is checked out under `/opt/knowledge-app` as non-root user `knowledgeapp`; compiled output and production dependencies are verified. Backend process supervision and application port publishing are still pending.
 
 ## Shared measured traffic baseline
 
@@ -36,7 +37,7 @@ These are backend health-endpoint results only. Frontend serving capacity, end-t
 
 ## Next milestone
 
-1. Connect to the provisioned application instance over SSH at `localhost:2200` and verify the session.
+1. Backend runtime and compilation are verified. Configure process supervision and verify the backend HTTP endpoint through Floci's application port publishing.
 2. Deploy the existing backend, then deploy the existing Next.js application.
 3. Connect the deployed frontend to `/api/info`, verify the browser flow, and document the update and rollback procedure.
 4. Continue building and deploying features incrementally. Add CI/CD once manual deployment is repeatable.
